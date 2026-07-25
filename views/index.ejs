@@ -1,28 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blogify</title>
-</head>
-<body>
-    <% - include('partials/header') %>
-    <%- include('partials/navbar') %>
-    <section class="hero">
-    <h1>Share Your Thoughts</h1>
-    <p>
-        Welcome to Blogify! Write, publish, and share your ideas with the world.
-    </p>
+<% - include('partials/header') %> <%- include('partials/navbar') %>
+<section class="hero">
+  <h1>Share Your Thoughts</h1>
+  <p>
+    Welcome to Blogify! Write, publish, and share your ideas with the world.
+  </p>
 
-    <a href="/create" class="btn">Create New Post</a>
+  <a href="/create" class="btn">Create New Post</a>
 </section>
 
 <section class="posts">
     <h2>Recent Posts</h2>
 
-    <p>No posts yet. Start writing your first blog!</p>
+    <% if (posts.length === 0) { %>
+
+        <p>No posts yet. Start writing your first blog!</p>
+
+    <% } else { %>
+
+        <% posts.forEach(post => { %>
+
+            <div class="post-card">
+                <h3><%= post.title %></h3>
+                <p><strong>Author:</strong> <%= post.author %></p>
+                <p><%= post.content %></p>
+                <small>
+                    Posted on
+                    <%= post.createdAt.toLocaleString() %>
+                </small>
+            </div>
+
+        <% }) %>
+
+    <% } %>
+
 </section>
 
 <%- include("partials/footer") %>
-</body>
-</html>
