@@ -23,7 +23,7 @@ app.post("/create", (req, res) => {
         title: req.body.title,
         author: req.body.author,
         content: req.body.content,
-        createdAt: new Date()
+        updatedAt: new Date()
     };
 
     posts.push(newPost);
