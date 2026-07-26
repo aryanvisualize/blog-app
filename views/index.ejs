@@ -23,6 +23,9 @@
                     Posted on
                     <%= post.updatedAt.toLocaleString() %>
                 </small>
+                 <a href="/edit/<%= post.id %>">
+                    <button>Edit</button>
+                </a>
             </div>
         <% }) %>
 

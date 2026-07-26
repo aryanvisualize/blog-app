@@ -33,7 +33,24 @@ app.post("/create", (req, res) => {
     res.redirect("/");
 });
 
+app.get("/edit/:id", (req, res) => {
+    const id = parseInt(req.params.id);
+    const post = posts.find(post => post.id === id);
+    res.render("edit", { post });
+});
 
+app.post("/edit/:id", (req, res) => {
+    const id = parseInt(req.params.id);
+    const post = posts.find(post => post.id === id);
+
+    if (post) {
+        post.title = req.body.title;
+        post.author = req.body.author;
+        post.content = req.body.content;
+        post.updatedAt = new Date();
+    }
+    res.redirect("/");
+});
 
 app.listen(port, ()=>{
     console.log(`Server is running at ${port}`);
